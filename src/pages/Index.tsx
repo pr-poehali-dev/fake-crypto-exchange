@@ -126,7 +126,7 @@ const Index = () => {
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <p className="text-gray-400 text-sm mb-1">Общий баланс</p>
-                  <h2 className="text-4xl font-bold">$6 582,98</h2>
+                  <h2 className="text-4xl font-bold">${mockBalance.total.toLocaleString()}</h2>
                 </div>
                 <Badge className={`${mockBalance.change24h > 0 ? 'bg-primary/20 text-primary' : 'bg-red-500/20 text-red-500'} pulse-green`}>
                   {mockBalance.change24h > 0 ? '+' : ''}{mockBalance.change24h}%
