@@ -334,9 +334,9 @@ const Index = () => {
               <h3 className="text-xl font-semibold mb-4">Недавние операции</h3>
               <div className="space-y-3">
                 {[
-                  { type: 'swap', from: 'BTC', to: 'ETH', amount: '0.05', time: '2 часа назад' },
-                  { type: 'receive', coin: 'SOL', amount: '7.5', time: '5 часов назад' },
-                  { type: 'send', coin: 'BTC', amount: '0.02', time: '1 день назад' },
+                  { type: 'swap', from: 'BTC', to: 'ETH', fromName: 'ShredorCoin', toName: 'LeoMoney', amount: '0.05', time: '2 часа назад' },
+                  { type: 'receive', coin: 'SOL', coinName: 'TortleCoin', amount: '7.5', time: '5 часов назад' },
+                  { type: 'send', coin: 'BTC', coinName: 'ShredorCoin', amount: '0.02', time: '1 день назад' },
                 ].map((tx, idx) => (
                   <div key={idx} className="flex items-center justify-between p-3 bg-[#0F172A] rounded-lg">
                     <div className="flex items-center gap-3">
@@ -355,8 +355,8 @@ const Index = () => {
                       </div>
                       <div>
                         <p className="font-semibold">
-                          {tx.type === 'swap' ? `${tx.from} → ${tx.to}` : 
-                           tx.type === 'receive' ? `Получено ${tx.coin}` : `Отправлено ${tx.coin}`}
+                          {tx.type === 'swap' ? `${tx.fromName} → ${tx.toName}` : 
+                           tx.type === 'receive' ? `Получено ${tx.coinName}` : `Отправлено ${tx.coinName}`}
                         </p>
                         <p className="text-sm text-gray-400">{tx.time}</p>
                       </div>
