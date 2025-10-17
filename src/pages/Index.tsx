@@ -135,7 +135,7 @@ const Index = () => {
               <p className="text-gray-400 text-sm">за последние 24 часа</p>
             </Card>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-4 gap-4">
               <Button 
                 onClick={() => handleQuickAction('Отправить')}
                 className="bg-[#1E293B] hover:bg-[#2D3B4F] h-20 flex-col gap-2"
@@ -156,6 +156,18 @@ const Index = () => {
               >
                 <Icon name="ArrowLeftRight" size={24} />
                 <span>Обменять</span>
+              </Button>
+              <Button 
+                onClick={() => {
+                  const pizzaCost = (Math.random() * 30 + 10).toFixed(2);
+                  toast.success(`🍕 Пицца заказана за $${pizzaCost}!`, { 
+                    description: 'Доставка через 30 минут или бесплатно!' 
+                  });
+                }}
+                className="bg-orange-600 hover:bg-orange-700 h-20 flex-col gap-2"
+              >
+                <span className="text-3xl">🍕</span>
+                <span>Пицца</span>
               </Button>
             </div>
 
