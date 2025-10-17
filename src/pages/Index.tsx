@@ -45,7 +45,7 @@ const Sparkline = ({ data, positive }: { data: number[], positive: boolean }) =>
       <polyline
         points={points}
         fill="none"
-        stroke={positive ? '#10B981' : '#EF4444'}
+        stroke={positive ? '#9370DB' : '#EF4444'}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -329,14 +329,14 @@ const Index = () => {
                     <div className="flex items-center gap-3">
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                         tx.type === 'swap' ? 'bg-primary/20' : 
-                        tx.type === 'receive' ? 'bg-green-500/20' : 'bg-red-500/20'
+                        tx.type === 'receive' ? 'bg-primary/20' : 'bg-red-500/20'
                       }`}>
                         <Icon 
                           name={tx.type === 'swap' ? 'ArrowLeftRight' : tx.type === 'receive' ? 'ArrowDown' : 'ArrowUp'} 
                           size={20}
                           className={
                             tx.type === 'swap' ? 'text-primary' : 
-                            tx.type === 'receive' ? 'text-green-500' : 'text-red-500'
+                            tx.type === 'receive' ? 'text-primary' : 'text-red-500'
                           }
                         />
                       </div>
