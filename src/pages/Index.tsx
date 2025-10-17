@@ -56,6 +56,10 @@ const Index = () => {
   const [toAmount, setToAmount] = useState('');
   const [fromCrypto, setFromCrypto] = useState('BTC');
   const [toCrypto, setToCrypto] = useState('ETH');
+  const [pizzaCount, setPizzaCount] = useState(() => {
+    const saved = localStorage.getItem('pizzaCount');
+    return saved ? parseInt(saved) : 0;
+  });
   
   const mockBalance = useMemo(() => {
     const total = getRandomBalance();
@@ -106,7 +110,7 @@ const Index = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8 bg-[#1E293B] p-1">
+          <TabsList className="grid w-full grid-cols-4 mb-8 bg-[#1E293B] p-1">
             <TabsTrigger value="dashboard" className="data-[state=active]:bg-primary">
               <Icon name="Home" size={18} className="mr-2" />
               Главная
@@ -118,6 +122,10 @@ const Index = () => {
             <TabsTrigger value="exchange" className="data-[state=active]:bg-primary">
               <Icon name="ArrowLeftRight" size={18} className="mr-2" />
               Обмен
+            </TabsTrigger>
+            <TabsTrigger value="profile" className="data-[state=active]:bg-primary">
+              <Icon name="User" size={18} className="mr-2" />
+              Профиль
             </TabsTrigger>
           </TabsList>
 
@@ -160,6 +168,9 @@ const Index = () => {
               <Button 
                 onClick={() => {
                   const pizzaCost = (Math.random() * 30 + 10).toFixed(2);
+                  const newCount = pizzaCount + 1;
+                  setPizzaCount(newCount);
+                  localStorage.setItem('pizzaCount', newCount.toString());
                   toast.success(`🍕 Пицца заказана за $${pizzaCost}!`, { 
                     description: 'Доставка через 30 минут или бесплатно!' 
                   });
@@ -373,6 +384,108 @@ const Index = () => {
                     <p className="font-semibold">{tx.amount}</p>
                   </div>
                 ))}
+              </div>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="profile" className="space-y-6">
+            <Card className="bg-[#1E293B] border-none p-6">
+              <div className="flex items-center gap-4 mb-6">
+                <Avatar className="w-20 h-20 bg-primary/20">
+                  <span className="text-4xl">🐢</span>
+                </Avatar>
+                <div>
+                  <h3 className="text-2xl font-bold">Черепашка-ниндзя</h3>
+                  <p className="text-gray-400">Крипто-трейдер</p>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <Card className="bg-[#0F172A] border-none p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                      <Icon name="TrendingUp" size={24} className="text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-400">Всего сделок</p>
+                      <p className="text-2xl font-bold">143</p>
+                    </div>
+                  </div>
+                </Card>
+                
+                <Card className="bg-[#0F172A] border-none p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-orange-600/20 flex items-center justify-center">
+                      <span className="text-2xl">🍕</span>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-400">Съедено пицц</p>
+                      <p className="text-2xl font-bold">{pizzaCount}</p>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            </Card>
+
+            <Card className="bg-[#1E293B] border-none p-6">
+              <h3 className="text-xl font-semibold mb-4">Достижения</h3>
+              <div className="space-y-3">
+                {[
+                  { icon: '🥇', name: 'Первая сделка', desc: 'Совершите первый обмен', unlocked: true },
+                  { icon: '🍕', name: 'Любитель пиццы', desc: `Закажите ${Math.max(5, pizzaCount + 1)} пицц`, unlocked: pizzaCount >= 5 },
+                  { icon: '💎', name: 'Крипто-магнат', desc: 'Баланс выше $15,000', unlocked: mockBalance.total > 15000 },
+                  { icon: '🐢', name: 'Черепашья мощь', desc: 'Владейте всеми монетами черепашек', unlocked: true },
+                ].map((achievement, idx) => (
+                  <div 
+                    key={idx} 
+                    className={`flex items-center gap-4 p-4 rounded-lg ${
+                      achievement.unlocked ? 'bg-primary/10' : 'bg-[#0F172A] opacity-50'
+                    }`}
+                  >
+                    <span className="text-3xl">{achievement.icon}</span>
+                    <div className="flex-1">
+                      <p className="font-semibold">{achievement.name}</p>
+                      <p className="text-sm text-gray-400">{achievement.desc}</p>
+                    </div>
+                    {achievement.unlocked && (
+                      <Badge className="bg-primary/20 text-primary">Получено</Badge>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </Card>
+
+            <Card className="bg-[#1E293B] border-none p-6">
+              <h3 className="text-xl font-semibold mb-4">Настройки</h3>
+              <div className="space-y-4">
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-start"
+                  onClick={() => toast.info('Функция в разработке')}
+                >
+                  <Icon name="Bell" size={20} className="mr-2" />
+                  Уведомления
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-start"
+                  onClick={() => toast.info('Функция в разработке')}
+                >
+                  <Icon name="Shield" size={20} className="mr-2" />
+                  Безопасность
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-start text-red-500 hover:text-red-600"
+                  onClick={() => {
+                    setPizzaCount(0);
+                    localStorage.removeItem('pizzaCount');
+                    toast.success('Счётчик пицц сброшен!');
+                  }}
+                >
+                  <Icon name="RotateCcw" size={20} className="mr-2" />
+                  Сбросить счётчик пицц
+                </Button>
               </div>
             </Card>
           </TabsContent>
