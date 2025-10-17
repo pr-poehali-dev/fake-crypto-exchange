@@ -11,10 +11,10 @@ import { toast } from 'sonner';
 const mockCryptos = [
   { id: 'BTC', name: 'ShredorCoin', symbol: 'BTC', price: 67234.50, change: 2.34, sparkline: [65000, 66000, 65500, 67000, 67234] },
   { id: 'ETH', name: 'LeoMoney', symbol: 'ETH', price: 3456.78, change: 1.89, sparkline: [3400, 3420, 3450, 3440, 3456] },
-  { id: 'BNB', name: 'Binance Coin', symbol: 'BNB', price: 589.34, change: -0.45, sparkline: [595, 592, 590, 588, 589] },
+  { id: 'BNB', name: 'MikeyToken', symbol: 'BNB', price: 589.34, change: -0.45, sparkline: [595, 592, 590, 588, 589] },
   { id: 'SOL', name: 'TortleCoin', symbol: 'SOL', price: 142.67, change: 5.67, sparkline: [135, 138, 140, 141, 142] },
-  { id: 'XRP', name: 'Ripple', symbol: 'XRP', price: 0.5234, change: 0.89, sparkline: [0.52, 0.521, 0.522, 0.523, 0.5234] },
-  { id: 'ADA', name: 'Cardano', symbol: 'ADA', price: 0.4567, change: -1.23, sparkline: [0.462, 0.460, 0.458, 0.457, 0.4567] },
+  { id: 'XRP', name: 'RaphCash', symbol: 'XRP', price: 0.5234, change: 0.89, sparkline: [0.52, 0.521, 0.522, 0.523, 0.5234] },
+  { id: 'ADA', name: 'DonnieCoin', symbol: 'ADA', price: 0.4567, change: -1.23, sparkline: [0.462, 0.460, 0.458, 0.457, 0.4567] },
 ];
 
 const getRandomBalance = () => {
