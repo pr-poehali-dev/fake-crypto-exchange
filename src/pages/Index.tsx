@@ -59,17 +59,14 @@ const Index = () => {
   
   const mockBalance = useMemo(() => {
     const total = getRandomBalance();
-    const btcValue = total * 0.785;
-    const ethValue = total * 0.135;
-    const solValue = total * 0.08;
     
     return {
       total,
       change24h: parseFloat((Math.random() * 10 - 2).toFixed(2)),
       holdings: [
-        { symbol: 'BTC', amount: parseFloat((btcValue / 67234.50).toFixed(4)), value: parseFloat(btcValue.toFixed(2)) },
-        { symbol: 'ETH', amount: parseFloat((ethValue / 3456.78).toFixed(4)), value: parseFloat(ethValue.toFixed(2)) },
-        { symbol: 'SOL', amount: parseFloat((solValue / 142.67).toFixed(2)), value: parseFloat(solValue.toFixed(2)) },
+        { symbol: 'BTC', amount: 0.15, value: parseFloat((Math.random() * (5000 - 500) + 500).toFixed(2)) },
+        { symbol: 'ETH', amount: 0.5, value: parseFloat((Math.random() * (3000 - 300) + 300).toFixed(2)) },
+        { symbol: 'SOL', amount: 7.5, value: parseFloat((Math.random() * (2000 - 200) + 200).toFixed(2)) },
       ]
     };
   }, []);
