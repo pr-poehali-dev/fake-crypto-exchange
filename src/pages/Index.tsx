@@ -85,12 +85,10 @@ const Index = () => {
       <div className="container mx-auto px-4 py-6 max-w-6xl">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
-            <img 
-              src="https://cdn.poehali.dev/projects/fa98ed88-dc6a-4531-a187-4565b31593aa/files/174be0b5-426e-423c-ac80-3a6eee220189.jpg" 
-              alt="Mutagen Logo"
-              className="w-16 h-16 object-contain crypto-glow"
-            />
-            <h1 className="text-2xl font-bold">MetagenFinance</h1>
+            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center crypto-glow">
+              <Icon name="Coins" size={24} />
+            </div>
+            <h1 className="text-2xl font-bold">CryptoEx</h1>
           </div>
           <Button variant="ghost" size="icon" className="text-white">
             <Icon name="Settings" size={24} />
