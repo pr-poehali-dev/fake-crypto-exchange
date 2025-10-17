@@ -88,7 +88,7 @@ const Index = () => {
             <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center crypto-glow">
               <Icon name="Coins" size={24} />
             </div>
-            <h1 className="text-2xl font-bold">CryptoEx</h1>
+            <h1 className="text-2xl font-bold">MetagenFinance</h1>
           </div>
           <Button variant="ghost" size="icon" className="text-white">
             <Icon name="Settings" size={24} />
