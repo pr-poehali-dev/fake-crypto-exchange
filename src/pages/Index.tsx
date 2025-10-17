@@ -174,7 +174,7 @@ const Index = () => {
                           <span className="text-sm font-bold">{holding.symbol[0]}</span>
                         </Avatar>
                         <div>
-                          <p className="font-semibold">{holding.symbol}</p>
+                          <p className="font-semibold">{crypto?.name || holding.symbol}</p>
                           <p className="text-sm text-gray-400">{holding.amount} {holding.symbol}</p>
                         </div>
                       </div>
