@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -17,14 +17,10 @@ const mockCryptos = [
   { id: 'ADA', name: 'Cardano', symbol: 'ADA', price: 0.4567, change: -1.23, sparkline: [0.462, 0.460, 0.458, 0.457, 0.4567] },
 ];
 
-const mockBalance = {
-  total: 12847.56,
-  change24h: 3.45,
-  holdings: [
-    { symbol: 'BTC', amount: 0.15, value: 10085.18 },
-    { symbol: 'ETH', amount: 0.5, value: 1728.39 },
-    { symbol: 'SOL', amount: 7.5, value: 1034.03 },
-  ]
+const getRandomBalance = () => {
+  const min = 1578.74;
+  const max = 19793.84;
+  return parseFloat((Math.random() * (max - min) + min).toFixed(2));
 };
 
 const Sparkline = ({ data, positive }: { data: number[], positive: boolean }) => {
@@ -60,6 +56,23 @@ const Index = () => {
   const [toAmount, setToAmount] = useState('');
   const [fromCrypto, setFromCrypto] = useState('BTC');
   const [toCrypto, setToCrypto] = useState('ETH');
+  
+  const mockBalance = useMemo(() => {
+    const total = getRandomBalance();
+    const btcValue = total * 0.785;
+    const ethValue = total * 0.135;
+    const solValue = total * 0.08;
+    
+    return {
+      total,
+      change24h: parseFloat((Math.random() * 10 - 2).toFixed(2)),
+      holdings: [
+        { symbol: 'BTC', amount: parseFloat((btcValue / 67234.50).toFixed(4)), value: parseFloat(btcValue.toFixed(2)) },
+        { symbol: 'ETH', amount: parseFloat((ethValue / 3456.78).toFixed(4)), value: parseFloat(ethValue.toFixed(2)) },
+        { symbol: 'SOL', amount: parseFloat((solValue / 142.67).toFixed(2)), value: parseFloat(solValue.toFixed(2)) },
+      ]
+    };
+  }, []);
 
   const handleSwap = () => {
     if (!fromAmount || parseFloat(fromAmount) <= 0) {
